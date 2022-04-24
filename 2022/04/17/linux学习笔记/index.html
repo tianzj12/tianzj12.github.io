@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh_CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>linux学习笔记 | Hexo</title><meta name="keywords" content="Linux"><meta name="author" content="天之谨"><meta name="copyright" content="天之谨"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="文件系统目录Linux里一切皆文件 由根目录 &#x2F; 下分支出以下主要目录 &#x2F;bin    存放经常使用的命令 &#x2F;sbin    系统管理员使用的系统管理程序 &#x2F;home    存放普通用户的主目录 &#x2F;root    系统管理员（超级权限者）的用户主目录 &#x2F;etc    所有的系统管理员所需要的配置文件和子目录 &#x2F;usr    用户">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux学习笔记">
+<meta property="og:url" content="http://example.com/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件系统目录Linux里一切皆文件 由根目录 &#x2F; 下分支出以下主要目录 &#x2F;bin    存放经常使用的命令 &#x2F;sbin    系统管理员使用的系统管理程序 &#x2F;home    存放普通用户的主目录 &#x2F;root    系统管理员（超级权限者）的用户主目录 &#x2F;etc    所有的系统管理员所需要的配置文件和子目录 &#x2F;usr    用户">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-04-17T08:49:55.000Z">
+<meta property="article:modified_time" content="2022-04-17T08:54:08.436Z">
+<meta property="article:author" content="天之谨">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'linux学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-17 16:54:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://drawingbed-1310781802.cos.ap-beijing.myqcloud.com/img/若琪头像.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">linux学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-04-17T08:49:55.000Z" title="Created 2022-04-17 16:49:55">2022-04-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-04-17T08:54:08.436Z" title="Updated 2022-04-17 16:54:08">2022-04-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="linux学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="文件系统目录"><a href="#文件系统目录" class="headerlink" title="文件系统目录"></a>文件系统目录</h1><p>Linux里一切皆文件</p>
+<p>由根目录 &#x2F; 下分支出以下主要目录</p>
+<p>&#x2F;bin    存放经常使用的命令</p>
+<p>&#x2F;sbin    系统管理员使用的系统管理程序</p>
+<p>&#x2F;home    存放普通用户的主目录</p>
+<p>&#x2F;root    系统管理员（超级权限者）的用户主目录</p>
+<p>&#x2F;etc    所有的系统管理员所需要的配置文件和子目录</p>
+<p>&#x2F;usr    用户的许多应用程序和文件都存在这个目录下</p>
+<p>&#x2F;boot    启动Linux时使用的一些核心文件</p>
+<p>&#x2F;media    把当前识别的设备挂载到该文件夹下</p>
+<p>&#x2F;mnt    临时挂载别的文件系统（共享文件夹在该目录下）</p>
+<p>&#x2F;var    经常被修改的文件存储在这里</p>
+<p>&#x2F;opt    额外安装软件所摆放的目录（安装包）</p>
+<p>&#x2F;usr&#x2F;local    额外安装软件所安装的目录（安装好的程序）</p>
+<p>&#x2F;lib    系统开机所需要的最基本的动态连接共享库</p>
+<p>&#x2F;proc（不要动）    系统内存的映射</p>
+<p>&#x2F;srv（不要动）    存放一些服务启动后需要提取的数据</p>
+<p>&#x2F;sys（不要动）    文件系统</p>
+<p>&#x2F;tmp    存放临时文件</p>
+<p>&#x2F;dev    将硬件以文件方式存储</p>
+<p>&#x2F;selinux    安全子系统，能控制程序只能访问特定文件</p>
+<p>&#x2F;lost+found    系统非法关机后存放文件</p>
+<h1 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h1><p><img src="https://drawingbed-1310781802.cos.ap-beijing.myqcloud.com/img/vim%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2.jpg" alt="vim模式切换"></p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
+<li>yy    拷贝当前行，5yy    拷贝当前行向下的5行（可替换为任意行），p    粘贴</li>
+<li>dd    删除当前行，5dd    删除当前行向下的5行（可替换为任意行）</li>
+<li>&#x2F;    文档中查找某单词，n    查找下一个单词</li>
+<li>：set nu    添加文件的行号，set nonu    取消文件的行号</li>
+<li>G    到达文档最末行，gg    到达文档最首行<strong>（正常模式下指令）</strong></li>
+<li>u    撤销<strong>（正常模式下指令）</strong></li>
+<li>数字+shift+g    光标移动至指定行<h1 id="开关机重启等操作"><a href="#开关机重启等操作" class="headerlink" title="开关机重启等操作"></a>开关机重启等操作</h1></li>
+</ul>
+<p><strong>shutdown</strong></p>
+<ul>
+<li>shutdown -h now    立即关机</li>
+<li>shutdown -h 1    1min后关机</li>
+<li>shutdown -r now    立即重启</li>
+</ul>
+<p><strong>halt</strong><br>直接使用，关机</p>
+<p><strong>reboot</strong><br>重启</p>
+<p><strong>sync</strong><br>将内存中的数据同步到磁盘上（良好习惯）</p>
+<h1 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h1><p>普通用户登录后可以使用<strong>“su - 用户名”</strong>切换为系统管理员身份，输入<strong>logout</strong>命令即可注销用户</p>
+<h1 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h1><p>存储在系统的运行级别配置文件&#x2F;etc&#x2F;inittab中（7个运行级别）</p>
+<p>0：关机</p>
+<p>1：单用户（找回丢失密码）</p>
+<p>2：多用户无网络</p>
+<p><strong>3：多用户有网络（常用）</strong></p>
+<p>4：保留的待开发运行级别</p>
+<p><strong>5：图形界面（常用）</strong></p>
+<p>6：重启</p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><ul>
+<li>init [运行级别]    切换至指定运行级别</li>
+</ul>
+<p>📑 如何找回root密码<br>    思路：切换至运行级别1，重设密码<br>    （开机 -&gt; 引导处Enter -&gt; 按e -&gt; 选中第二行（编辑内核）输入e -&gt; 输入1+Enter -&gt; 输入b -&gt; 单用户模式 -&gt; 使用 passwd 指令修改root密码）</p>
+<h1 id="实用指令"><a href="#实用指令" class="headerlink" title="实用指令"></a>实用指令</h1><h2 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h2><p>man [指令名称]    获取指令的帮助信息</p>
+<p>help [指令名称]    获取shell内置命令的帮助信息</p>
+<h2 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h2><ul>
+<li><p>pwd    显示当前工作目录的绝对路径</p>
+</li>
+<li><p>ls [选项] [目录 or 文件]    查看当前目录中的信息（常用选项 -a：显示包括隐藏的当前目录下所有文件和目录；-l 以列表形式显示信息）</p>
+</li>
+<li><p>cd [参数]    切换至指定目录</p>
+<pre><code>  cd or cd~    回到 /root（用户家目录）
+  cd..    回到上一级目录
+
+  绝对路径：/home    从根目录开始定位
+  相对路径：../home    从当前目录开始定位
+</code></pre>
+</li>
+<li><p>mkdir [选项] [目录路径]    在指定位置创建目录（-p：创建多级目录）</p>
+</li>
+<li><p>rmdir [选项] [目录路径]    删除指定位置的目录</p>
+</li>
+<li><p>rm [选项] [目录路径]    删除指定位置的目录（-r：递归删除整个文件夹；-f：强制删除不提示）（常用 <strong>rm -rf</strong> 删除整个文件夹）</p>
+</li>
+<li><p>touch [选项] [文件名称]    指定位置创建文件（可创建多个，用空格间隔）</p>
+</li>
+<li><p>cp [文件名称] [目录名称]    将文件拷贝至指定目录下<br>cp -r [目录名称1] [目录名称2]    将目录1全部内容递归复制至目录2位置<br>\cp -r [目录名称1] [目录名称2]    将目录1全部内容递归复制至目录2位置，直接覆盖目录2下相同文件</p>
+</li>
+<li><p>mv    移动文件或重命名<br>mv [文件名] [路径]    将文件移动至指定路径<br>mv [文件名1] [文件名2]    将<strong>当前目录下</strong>的文件1重命名为“文件名2”</p>
+</li>
+<li><p>cat [选项] [文件名称]    以只读方式查看文件（-n：显示行号）<br>cat [选项] [文件名称] | more    以只读方式查看文件，并分页显示（常见用法）<br>cat [文件1] &gt; [文件2]    将文件1内容覆盖写入到文件2中</p>
+</li>
+<li><p>more [文件名称]    分页显示文件（按 Enter 逐行查看；按 Space 逐页查看；Ctrl + B 上一页；Ctrl + F 下一页）</p>
+</li>
+<li><p>less [文件名称]    分页显示文件，但不是一次性加载全部内容，对于大型文件效率高</p>
+</li>
+<li><p>[显示内容的指令] &gt; [文件名]    重定向指令：将前面的内容覆盖写入到指定文件中（若无该文件则创建文件）</p>
+</li>
+<li><p>[显示内容的指令] &gt;&gt; [文件名]    追加指令：将前面的内容追加写入到指定文件中</p>
+</li>
+<li><p>echo “[内容]” [&gt; or &gt;&gt;] [文件名]    将前面的内容覆盖（or 追加）写入到指定文件中<br>echo [选项] [输出内容]    输出指定内容</p>
+</li>
+<li><p>head [-n 数字] [文件]    输出文件的前 [数字] 行（默认10行）</p>
+</li>
+<li><p>tail [-n 数字] [文件]    输出文件的前 [数字] 行（默认10行）<br><strong>tail -f [文件]：实时追踪该文档的所有更新，常用</strong></p>
+</li>
+<li><p>ln -s [原文件 or 目录] [软链接名称]    为目标创建一个软链接（快捷方式）</p>
+</li>
+<li><p>history    显示所有执行过的指令<br>history [数字]    显示后 [数字] 行执行过的指令</p>
+</li>
+<li><p>![数字]    执行编号为 [数字] 的指令</p>
+</li>
+</ul>
+<h2 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h2><ul>
+<li>cal    显示日历<br>cal [年份]    显示 [年份] 年的全部日历</li>
+<li>date    显示当前时间<br>date +%Y    显示当前年份<br>date +%m    显示当前月份<br>date +%d    显示当前是哪一天<br>date “+%Y-%m-%d %H:%M:%S”    显示年月日时分秒（格式字符串）<br>date -s [字符串时间]    将系统时间设置为 [字符串时间]</li>
+</ul>
+<h2 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h2><ul>
+<li>find [搜索范围] [选项] [文件名]    在 [搜索范围] 内按 [选项] 搜寻 [文件名] 对应的文件<br>（例1：find &#x2F;home -name hello.txt    查找&#x2F;home下名称为”hello.txt”的文件）<br>（例2：find &#x2F;home -name *.txt    查找&#x2F;home下所有 txt 文件）<br>（例3：find &#x2F;home -size +20M    查找&#x2F;home下大于20M的文件）</li>
+<li>locate [搜索文件]    快速定位文件，无序遍历整个文件系统，首次使用前需要使用 updatedb 指令创建 locate 数据库</li>
+<li>grep    过滤查找（-n：显示匹配行及行号；-i：忽略字母大小写）<br>常见用法：cat [文件] | grep [查找内容]    显示 [文件] 中的 [查找内容]</li>
+<li>[命令1] | [命令2]    管道符号”|”：将命令1的处理结果交给命令2进行处理</li>
+</ul>
+<h2 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h2><ul>
+<li>gzip [文件]    将文件压缩为 .gz 文件（不保留原文件）</li>
+<li>gunzip [文件.gz]    将文件.gz 解压缩</li>
+<li>zip [选项] [压缩文件名.zip] [待压缩文件]    将文件压缩为 .zip 文件（-r：递归压缩目录）</li>
+<li>unzip [待解压压缩包.zip]    将文件.zip 解压缩（-d [目录]：指定解压后文件存放位置）</li>
+<li>tar [选项] [压缩包名称.tar.gz] [文件]    将 [文件] 解压 or 压缩（-c：产生.tar.gz 打包文件；-v：显示详细信息；-f：指定压缩后的文件名；-z：打包同时压缩；-x：解压.tar.gz 文件）</li>
+</ul>
+<h2 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h2><ul>
+<li>Tab    补齐</li>
+<li>Ctrl+C    终止程序运行</li>
+<li>Ctrl+Z    挂起当前进程</li>
+<li>Ctrl+&#x2F;    终止前台进程并生成 core 文件</li>
+<li>Ctrl+D    表示一个特殊的二进制值，表示 EOF</li>
+<li>Ctrl+L    清空窗口</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">天之谨</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/24/testwebhook/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">testwebhook</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/07/%E5%A4%A9%E4%B9%8B%E8%B0%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">天之谨的第一篇博客</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://drawingbed-1310781802.cos.ap-beijing.myqcloud.com/img/若琪头像.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">天之谨</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">文件系统目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">vim编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">2.1.</span> <span class="toc-text">快捷键</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E7%AD%89%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">开关机重启等操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80"><span class="toc-number">4.</span> <span class="toc-text">用户登录和注销</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB"><span class="toc-number">5.</span> <span class="toc-text">运行级别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">基本语法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">实用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">帮助指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB"><span class="toc-number">6.2.</span> <span class="toc-text">文件目录类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB"><span class="toc-number">6.3.</span> <span class="toc-text">时间日期类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB"><span class="toc-number">6.4.</span> <span class="toc-text">搜索查找类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">6.5.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4"><span class="toc-number">6.6.</span> <span class="toc-text">其他指令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/04/24/webhook2/" title="webhook2"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webhook2"/></a><div class="content"><a class="title" href="/2022/04/24/webhook2/" title="webhook2">webhook2</a><time datetime="2022-04-24T09:41:46.000Z" title="Created 2022-04-24 17:41:46">2022-04-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/24/testwebhook/" title="testwebhook"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="testwebhook"/></a><div class="content"><a class="title" href="/2022/04/24/testwebhook/" title="testwebhook">testwebhook</a><time datetime="2022-04-24T09:32:47.000Z" title="Created 2022-04-24 17:32:47">2022-04-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="linux学习笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux学习笔记"/></a><div class="content"><a class="title" href="/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="linux学习笔记">linux学习笔记</a><time datetime="2022-04-17T08:49:55.000Z" title="Created 2022-04-17 16:49:55">2022-04-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/07/%E5%A4%A9%E4%B9%8B%E8%B0%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="天之谨的第一篇博客"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天之谨的第一篇博客"/></a><div class="content"><a class="title" href="/2022/04/07/%E5%A4%A9%E4%B9%8B%E8%B0%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="天之谨的第一篇博客">天之谨的第一篇博客</a><time datetime="2022-04-07T13:07:45.000Z" title="Created 2022-04-07 21:07:45">2022-04-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/07/lzysbl2/" title="lzysbl2"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="lzysbl2"/></a><div class="content"><a class="title" href="/2022/04/07/lzysbl2/" title="lzysbl2">lzysbl2</a><time datetime="2022-04-07T01:45:22.000Z" title="Created 2022-04-07 09:45:22">2022-04-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 天之谨</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://example.com/2022/04/17/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'
+    this.page.identifier = '2022/04/17/linux学习笔记/'
+    this.page.title = 'linux学习笔记'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
